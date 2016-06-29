@@ -4,29 +4,34 @@ var turn = 'X'
 var turns = []
 
 $('li div').on('click', function() {
-	
-//enter turn value in empty squares//
-if($(this).text() === "") {
-	console.log(turn);
-	$(this).append(turn);
-	}
-else {
-	alert('Click on an empty square!')
-	}
+	enterTurn($(this));
+	switchTurn();
+	checkWin();
 });
+
+//enter turn value in empty squares//
+function enterTurn(square) {
+	if(square.text() === "") {
+		console.log(turn);
+		square.append(turn);
+		}
+	else {
+		alert('Click on an empty square!')
+		}
+	}
 
 //switch between X and O//
-$('.game').on('click', function() {
+function switchTurn() {
 	if(turn === 'X') {
 		turn = 'O'
-	}
+		}
 	else {
 		turn = 'X'
+		}
 	}
-});
 
-//Check for win or tie//
-$('.game').on('click', function() {
+//check for win or tie//
+function checkWin() {
 	if ($('.sqOneTurn').text() === 'X' && $('.sqTwoTurn').text() === 'X' && $('.sqThreeTurn').text() === 'X') {
 		alert('X Wins!')
 		}
@@ -80,7 +85,7 @@ $('.game').on('click', function() {
 		&& $('.sqSevenTurn').text() !== "" && $('.sqEightTurn').text() !== "" && $('.sqNineTurn').text() !== "") {
 		alert('Its a tie!')
 		}
-});
+	}
 
 });
 
